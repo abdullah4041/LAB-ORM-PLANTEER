@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{ plant.image.url }}" class="img-fluid rounded-start" alt="{{ plant.name }}">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ plant.name }}</h5>
+                <p class="card-text">{{ plant.about }}</p>
+                <p class="card-text">Category: {{ plant.category }}</p>
+                <p class="card-text">Used For: {{ plant.used_for }}</p>
+                <p class="card-text">Edible: {{ plant.is_edible|yesno:"Yes,No" }}</p>
+                <p class="card-text"><small class="text-muted">Created at: {{ plant.created_at }}</small></p>
+                <p class="card-text"><small class="text-body-secondary">Last updated {{ plant.updated_at }}</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h3>Similar {{ plant.category }}</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for plant in plants %}
+        <div class="col">
+            <a href="{% url 'plants:detail_page' plant.id %}" class="text-decoration-none text-dark">
+                <div class="card h-100">
+                    <img src="{{ plant.image.url }}" class="card-img-top" alt="{{ plant.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plant.name }}</h5>
+                        <h6 class="card-text">{{ plant.category }}</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

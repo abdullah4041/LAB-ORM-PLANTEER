@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{%load static %}
+{% block content %}
+
+
+<div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for plant in plants %}
+        <div class="col">
+            <a href="{% url 'plants:detail_page' plant.id %}" class="text-decoration-none text-dark">
+                <div class="card h-100">
+                    
+                    <img src="{{ plant.image.url }}" class="card-img-top" alt="{{ plant.name }}">
+                  
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plant.name }}</h5>
+                        <h6 class="card-text">{{ plant.category }}</h6>
+                        <p class="card-text">{{ plant.about }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+  
+{% endblock %}
+
+

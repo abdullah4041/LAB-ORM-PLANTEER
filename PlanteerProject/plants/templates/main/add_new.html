@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+
+{%block title%} add plants {% endblock %}
+{% load static %}
+
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data" class="container mt-4">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" name="name" id="name" class="form-control" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="about" class="form-label">About:</label>
+        <textarea name="about" id="about" class="form-control" rows="3" required></textarea>
+    </div>
+    
+    <div class="mb-3">
+        <label for="used_for" class="form-label">Used For:</label>
+        <textarea name="used_for" id="used_for" class="form-control" rows="3" required></textarea>
+    </div>
+    
+    <div class="mb-3">
+        <label for="category" class="form-label" required>Category:</label>
+        <select name="category" id="category" class="form-select">
+            <option value="herb">Herb</option>
+            <option value="tree">Tree</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="frult">Frult</option>
+            <option value="flower">Flower</option>
+        </select>
+    </div>
+    
+    <div class="mb-3">
+        <label for="image" class="form-label">Image:</label>
+        <input type="file" name="image" id="image" required>
+    </div>
+    
+    <div class="form-check mb-3">
+        <input type="checkbox" name="is_edible" id="is_edible" class="form-check-input">
+        <label for="is_edible" class="form-check-label">Is Edible</label>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Add Plant</button>
+
+
+</form>
+
+
+{% endblock %}
